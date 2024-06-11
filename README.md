@@ -17,4 +17,15 @@ aws dynamodb create-table \
 
 # Create a replica of the table in another AWS Region
 # Create a table of Music identical in the US West (N. California).
+aws dynamodb update-table --table-name Music --cli-input-json --region us-east-1 \
+    '{
+        "ReplicaUpdates":
+        [
+            {
+            "Create": {
+                "RegionName": "us-west-1"
+                }
+            }
+        ]
+    }' 
 
